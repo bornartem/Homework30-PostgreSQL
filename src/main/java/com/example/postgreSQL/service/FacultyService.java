@@ -38,8 +38,6 @@ public class FacultyService {
     }
 
     public Collection<Faculty> facultyByColor(String color) {
-        return getAll().stream()
-                .filter(faculty -> faculty.getColor().equals(color))
-                .collect(Collectors.toList());
+        return facultyRepository.findFacultyByColor(color);
     }
 }
