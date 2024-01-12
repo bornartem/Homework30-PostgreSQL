@@ -1,5 +1,6 @@
 package com.example.postgreSQL.service;
 
+import com.example.postgreSQL.model.Faculty;
 import com.example.postgreSQL.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +39,10 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public Collection<Student> studentsByAge(int age) {
-        return studentRepository.findStudentByAge(age);
+    public Collection<Student> findStudentByAgeBetween(int age, int age1) {
+        return studentRepository.findStudentByAgeBetween(age, age1);
+    }
+    public Faculty findFacultyByStudent(long id){
+        return studentRepository.getReferenceById(id).getFaculty();
     }
 }

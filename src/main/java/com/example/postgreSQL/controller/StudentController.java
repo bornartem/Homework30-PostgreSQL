@@ -1,5 +1,6 @@
 package com.example.postgreSQL.controller;
 
+import com.example.postgreSQL.model.Faculty;
 import com.example.postgreSQL.model.Student;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.postgreSQL.service.StudentService;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("student")
@@ -54,7 +56,13 @@ public class StudentController {
     }
 
     @GetMapping("/age")
-    public Collection<Student> filterByAge(@RequestParam("age") int age) {
-        return studentService.studentsByAge(age);
+    public Collection<Student> filterByAge(@RequestParam("min") int age,
+                                           @RequestParam("max") int age1) {
+        return studentService.findStudentByAgeBetween(age, age1);
+    }
+
+    @GetMapping("/findByFaculty{id}")
+    public ResponseEntity<Faculty> findFacultyByStudent(@PathVariable long id) {
+        return ResponseEntity.ok(studentService.findFacultyByStudent(id));
     }
 }

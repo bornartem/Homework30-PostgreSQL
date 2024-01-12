@@ -1,6 +1,7 @@
 package com.example.postgreSQL.service;
 
 import com.example.postgreSQL.model.Faculty;
+import com.example.postgreSQL.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.postgreSQL.repositories.FacultyRepository;
@@ -39,5 +40,9 @@ public class FacultyService {
 
     public Collection<Faculty> facultyByColor(String color) {
         return facultyRepository.findFacultyByColor(color);
+    }
+
+    public Collection<Student> findStudentByFaculty(long id) {
+        return facultyRepository.getReferenceById(id).getStudents();
     }
 }

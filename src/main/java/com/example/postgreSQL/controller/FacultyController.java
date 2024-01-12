@@ -1,6 +1,7 @@
 package com.example.postgreSQL.controller;
 
 import com.example.postgreSQL.model.Faculty;
+import com.example.postgreSQL.model.Student;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -54,5 +55,10 @@ public class FacultyController {
     @GetMapping
     public ResponseEntity<Collection<Faculty>> getFaculties() {
         return ResponseEntity.ok(facultyService.getAll());
+    }
+
+    @GetMapping("/findByStudent{id}")
+    public ResponseEntity<Collection<Student>> findStudentByFaculty(@PathVariable long id) {
+        return ResponseEntity.ok(facultyService.findStudentByFaculty(id));
     }
 }
