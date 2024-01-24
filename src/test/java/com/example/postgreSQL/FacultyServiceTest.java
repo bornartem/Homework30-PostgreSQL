@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -61,12 +62,12 @@ public class FacultyServiceTest {
 
     @Test
     public void shouldReturnFacultyByColor() {
-       List<Faculty> faulties = new ArrayList<>();
-       faulties.add(faculty);
-       faulties.add(faculty1);
-       when(facultyRepositoryMock.findFacultyByColor("Blue")).thenReturn(faulties);
+       List<Faculty> faculties = new ArrayList<>();
+        faculties.add(faculty);
+        faculties.add(faculty1);
+       when(facultyRepositoryMock.findFacultyByColor("Blue")).thenReturn(faculties);
        Collection<Faculty> result = facultyService.facultyByColor(faculty.getColor());
-       assertEquals(faulties, result);
+       assertIterableEquals(faculties, result);
     }
 }
 
