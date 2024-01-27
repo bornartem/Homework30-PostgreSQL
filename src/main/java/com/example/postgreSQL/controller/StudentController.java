@@ -30,13 +30,13 @@ public class StudentController {
         return ResponseEntity.ok(student);
     }
 
-    @PostMapping
-    public Student createStudent(Student student) {
+    @PostMapping("/post")
+    public Student createStudent(@RequestBody Student student) {
         return studentService.createStudent(student);
     }
 
-    @PutMapping
-    public ResponseEntity<Student> updateStudent(Student student) {
+    @PutMapping("/update")
+    public ResponseEntity<Student> updateStudent(@RequestBody Student student) {
         Student foundStudent = studentService.updateStudent(student);
         if (foundStudent == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -62,7 +62,7 @@ public class StudentController {
     }
 
     @GetMapping("/findByFaculty{id}")
-    public ResponseEntity<Faculty> findFacultyByStudent(@PathVariable long id) {
+    public ResponseEntity<Faculty> findFacultyByStudentID(@PathVariable long id) {
         return ResponseEntity.ok(studentService.findFacultyByStudent(id));
     }
 }
